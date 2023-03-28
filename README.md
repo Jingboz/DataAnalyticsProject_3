@@ -6,6 +6,8 @@ Group members: Jingbo Zhao, Ge Shen
 
 Main dataset: WA bushfire geojson & Solar irradiance csv
 
+Potential Target Audience: People living or traveling in the rural place of WA. To give them advise of where could be the high risk region.
+
 Preliminary idea and steps:
 1. Put csv and geojson files into one of the databases 
 2. Interact with Flask and establish URLs by using stored datasets
