@@ -2,7 +2,7 @@
 let queryURL = "http://127.0.0.1:5000/api/geo_data";
 let url_solar = "http://127.0.0.1:5000/api/solar_city";
 
-function fetchData(page = 1, features = [], maxPages = 500) {
+function fetchData(page = 1, features = [], maxPages = 10) {
     if (page > maxPages) {
         d3.json(url_solar).then(function (response) {
             createFeatures(features, response);
@@ -104,6 +104,5 @@ function createMap(bushFires, bushFirePolygons, solarCityData) {
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap);
 }
 
-// Add the HTML element for the map
-document.write('<div id="map" style="width: 100%; height: 100%;"></div>');
+
 
