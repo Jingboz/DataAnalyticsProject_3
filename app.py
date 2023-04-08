@@ -7,14 +7,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config["MONGO_URI_tREE_SPECIES"] = "mongodb://localhost:27017/Tree_species"
+app.config["MONGO_URI_tREE_SPECIES"] = "mongodb://localhost:27017/Project3"
 mongo_tree_species = PyMongo(app, uri=app.config["MONGO_URI_tREE_SPECIES"] )
 
-app.config["MONGO_URI_AREA"] = "mongodb://localhost:27017/Area_planned_unplanned_tree"
-mongo_area = PyMongo(app, uri=app.config["MONGO_URI_AREA"])
-
-app.config["MONGO_URI_AUSTRALIA_FOREST_AREA"] = "mongodb://localhost:27017/Australia_forest_area"
+app.config["MONGO_URI_AUSTRALIA_FOREST_AREA"] = "mongodb://localhost:27017/Project3"
 mongo_australia_forest = PyMongo(app, uri=app.config["MONGO_URI_AUSTRALIA_FOREST_AREA"])
+
+app.config["MONGO_URI_SOLAR_CITY"] = "mongodb://localhost:27017/Project3"
+mongo_soalr_city= PyMongo(app, uri=app.config["MONGO_URI_SOLAR_CITY"])
 
 app.config["MONGO_URI_GEO_DATA"] = "mongodb://localhost:27017/geo_data"
 mongo_geo_data = PyMongo(app, uri=app.config["MONGO_URI_GEO_DATA"])
@@ -26,28 +26,29 @@ def hello():
     <p>Please use the following endpoints to access the databases:</p>
     <ul>
         <li><a href="/api/tree_species">/api/tree_species</a></li>
-        <li><a href="/api/area_planned_unplanned_tree">/api/area_planned_unplanned_tree</a></li>
         <li><a href="/api/australia_forest_data">/api/australia_forest_data</a></li>
+        <li><a href="/api/solar_city">/api/solar_city</a></li>        
         <li><a href="/api/geo_data">/api/geo_data</a></li>
     </ul>
     '''
     
 @app.route('/api/tree_species')
 def tree_species(): 
-    tree_species = mongo_tree_species.db.data.find({})
+    tree_species = mongo_tree_species.db.tree_sp.find({})
     page_sanitized = json.loads(json_util.dumps(tree_species))
     return jsonify(page_sanitized)
 
-@app.route('/api/area_planned_unplanned_tree')
-def area_planned_unplanned_tree():
-    area_data = mongo_area.db.data.find({})
-    page_sanitized = json.loads(json_util.dumps(area_data))
-    return jsonify(page_sanitized)
 
 @app.route('/api/australia_forest_data')
 def australia_forest_data():
-    forest_data = mongo_australia_forest.db.data.find({})
+    forest_data = mongo_australia_forest.db.forest_area.find({})
     page_sanitized = json.loads(json_util.dumps(forest_data))
+    return jsonify(page_sanitized)
+
+@app.route('/api/solar_city')
+def australia_solar_data():
+    solar_city_data = mongo_soalr_city.db.solar_city.find({})
+    page_sanitized = json.loads(json_util.dumps(solar_city_data))
     return jsonify(page_sanitized)
 
 @app.route('/api/geo_data')
