@@ -14,10 +14,9 @@ let url_solar = "http://127.0.0.1:5000/api/cities";
 
 // Get the data with d3.
 d3.json(url_solar).then(function(response) {
-  console.log(response[0].irradiance.hourly[0].clear_sky.dni);
 
   //init all plots
-  init(response[0]);
+  init(response[0].irradiance.hourly);
 
   // Create a new marker array.
   let markers = [];
@@ -40,8 +39,9 @@ d3.json(url_solar).then(function(response) {
 
   markers.forEach(function(marker, index) {
     marker.on('click', function() {
-        document.getElementById('message').textContent = 'Marker ' + index + ' clicked!';
-        barPlot(response[index].irradiance.hourly,false)
+        // document.getElementById('message').textContent = 'Marker ' + index + ' clicked!';
+        barPlot(response[index].irradiance.hourly,false);
+        gaugePlot(response[index].irradiance.hourly,false)
     });
   });
   
@@ -51,8 +51,8 @@ d3.json(url_solar).then(function(response) {
 
 function init(data){
   // init bar plot
-  barPlot(data.irradiance.hourly,true);
-
+  barPlot(data,true);
+  gaugePlot(data,true);
 };
 
 
@@ -65,7 +65,6 @@ function barPlot(inputArray, isInit){
 
   for (var index in inputArray){
     hours.push(inputArray[index].hour);
-    console.log(inputArray);
     irr.push(inputArray[index].clear_sky.dni);
     
   }
@@ -80,15 +79,90 @@ function barPlot(inputArray, isInit){
   let layout = {
     // title: "Top 10 OTU",
     height: 380,
-    width: 800
+    width: 600
   };
 
   if (isInit){
     Plotly.newPlot("bar", data, layout);
   }
   else{
-    console.log(data);
     Plotly.restyle("bar", 'y',  [irr]);
     Plotly.restyle("bar", 'x',  [hours]);
   }
 };
+
+
+function gaugePlot(inputArray, isInit){
+  
+  let dataDesc = inputArray.sort((f,s) => s.clear_sky.dni-f.clear_sky.dni);
+  let solar_v = dataDesc[0].clear_sky.dni
+  let value_stored = (solar_v -800) / 1.2;
+ console.log(value_stored)
+  // Trig to calc meter point
+  var degrees = 180 - value_stored,
+       radius = .5;
+  var radians = degrees * Math.PI / 180;
+  var x = radius * Math.cos(radians);
+  var y = radius * Math.sin(radians);
+  // Path: may have to change to create a better triangle
+  var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
+       pathX = String(x),
+       space = ' ',
+       pathY = String(y),
+       pathEnd = ' Z';
+  var path = mainPath.concat(pathX,space,pathY,pathEnd);
+
+  if (isInit){
+    const gauge_labels = [ 'CRITICAL','HIGH', 'MEDIUM','LOW','VERY LOW'];
+    const color_code = ['#fa2525','#f5a32f','#f5f22f','#b3f52f','#59f52f',"white"];
+  
+    var trace1 = { type: 'scatter',
+        x: [0], y:[0],
+        marker: {size: 20, color:'850000'},
+        showlegend: false,
+        name: 'Indicator',
+        text: solar_v,
+        hoverinfo: 'text+name'
+      };
+    var trace2 = { values: [100 / 5, 100 / 5, 100 / 5, 100 / 5, 100 / 5, 100],
+        rotation: 90,
+        text: gauge_labels,
+        textinfo: 'text',
+        textposition:'inside',
+        marker: {colors: color_code},
+        labels: ['151-180', '121-150', '91-120', '61-90', '31-60', '0-30', ''],
+        hoverinfo: 'label',
+        hole: .4,
+        type: 'pie',
+        showlegend: false
+      };
+
+    var data = [trace1,trace2];
+
+    var layout = {
+      shapes:[{
+          type: 'path',
+          path: path,
+          fillcolor: '850000',
+          line: {
+            color: '850000'
+          }
+        }],
+      title: '<b>Bushfile Alert</b>',
+      height: 500,
+      width: 500,
+      xaxis: {zeroline:false, showticklabels:false,
+                 showgrid: false, range: [-1, 1]},
+      yaxis: {zeroline:false, showticklabels:false,
+                 showgrid: false, range: [-1, 1]}
+      };
+    Plotly.newPlot(gauge, data, layout);
+  }
+
+  else{
+    gauge.data[0].text = solar_v;
+    gauge.layout.shapes[0].path = path;
+
+    Plotly.redraw(gauge);
+  }
+}

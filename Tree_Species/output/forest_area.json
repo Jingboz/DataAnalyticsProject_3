@@ -1,1 +1,42 @@
-[{"state": "\ufeffJurisdiction", "area": "Total forest area (million hectares)"}, {"state": "Northern Territory ", "area": "23.735"}, {"state": "Queensland ", "area": "51.83"}, {"state": "South Australia ", "area": "5.06"}, {"state": "Tasmania ", "area": "3.699"}, {"state": "Victoria ", "area": "8.222"}, {"state": "Western Australia ", "area": "20.981"}, {"state": "Australian Capital Territory ", "area": "0.142"}, {"state": "New South Wales ", "area": "20.368"}, {"state": "Australia_Total", "area": "134037"}]
+[
+    {
+        "state": "\ufeffJurisdiction",
+        "area": "Total forest area (million hectares)"
+    },
+    {
+        "state": "Northern Territory ",
+        "area": "23.735"
+    },
+    {
+        "state": "Queensland ",
+        "area": "51.83"
+    },
+    {
+        "state": "South Australia ",
+        "area": "5.06"
+    },
+    {
+        "state": "Tasmania ",
+        "area": "3.699"
+    },
+    {
+        "state": "Victoria ",
+        "area": "8.222"
+    },
+    {
+        "state": "Western Australia ",
+        "area": "20.981"
+    },
+    {
+        "state": "Australian Capital Territory ",
+        "area": "0.142"
+    },
+    {
+        "state": "New South Wales ",
+        "area": "20.368"
+    },
+    {
+        "state": "Australia_Total",
+        "area": "134037"
+    }
+]
