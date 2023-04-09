@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const contentBoxes = document.querySelectorAll('.content-box');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    });
+
+    contentBoxes.forEach((contentBox) => {
+        observer.observe(contentBox);
+    });
+});
+
 // Define the API endpoints
 let queryURL = "http://127.0.0.1:5000/api/geo_data";
 let url_solar = "http://127.0.0.1:5000/api/solar_city";
@@ -83,13 +98,14 @@ function createMap(bushFires, bushFirePolygons, solarCityData) {
         "BushFires (Polygons)": bushFirePolygons
     };
 
-    let myMap = L.map("map", {
+    let myMap = L.map("bushFireMap", {
         center: [
             -25.2744, 133.7751
         ],
         zoom: 5,
         layers: [osm, bushFires]
     });
+    
 
     let solarMarkers = L.layerGroup();
 
@@ -103,6 +119,7 @@ function createMap(bushFires, bushFirePolygons, solarCityData) {
 
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap);
 }
+
 
 
 

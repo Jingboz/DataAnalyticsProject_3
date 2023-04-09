@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Project 3: Bush fire data analysis visualization</title>
 </head>
 
-<body> 
+<body>
     <header class="header">
         <h1 class="display-4">Project 3: Bush fire data analysis visualization</h1>
     </header>
@@ -27,9 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="solar-radiation.html">Solar Radiation Analysis</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="wa-bushfire-map.html">WA Bush Fire Distribution Map</a>
-                    </li>
+
                 </ul>
             </div>
         </div>
@@ -46,15 +48,35 @@
             <div class="col-md-6 content-box">
                 <h2><i class="fas fa-sun"></i> Bush Fire and Solar Radiation</h2>
                 <p>
-                    在这里写bush fire和区域光照辐射的关系介绍。
+                    在这里写关于bush fire与太阳辐射之间的关系的介绍。
                 </p>
             </div>
         </div>
+    
+        <div class="row">
+            <div class="col-12 mt-5">
+                <h2><i class="fas fa-map-marked-alt"></i> Western Australia Bush Fire Distribution Map</h2>
+                <p>
+                    The map below shows the distribution of bushfires in Western Australia. Click on the cluster markers on the map to view detailed information about fires in specific areas.
+                </p>
+            </div>
+            <div class="col-12">
+                <div id="bushFireMap" style="height: 500px;"></div>
+            </div>
+        </div>
     </main>
-
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Project 3 Australia Bushfire Analysis - From Ge Shen & Jingbo Zhao.</p>
+        </div>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <script src="script.js"></script>
 </body>
 
-</html>
+</html>    
