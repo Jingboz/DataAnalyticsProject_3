@@ -108,30 +108,6 @@
         "AU": "5679"
     },
     {
-        "type": "Total Native forest",
-        "ACT": "130",
-        "NSW": "19925",
-        "NT": "23686",
-        "OLD": "51580",
-        "SA": "4856",
-        "TAS": "3342",
-        "VIC": "7645",
-        "WA": "20450",
-        "AU": "131615"
-    },
-    {
-        "type": "Other forestd(Soft_Hard_Commercial)",
-        "ACT": "19",
-        "NSW": "822.1",
-        "NT": "94",
-        "OLD": "480",
-        "SA": "381.2",
-        "TAS": "668",
-        "VIC": "992",
-        "WA": "914",
-        "AU": "4371"
-    },
-    {
         "type": "Total forest",
         "ACT": "142",
         "NSW": "20368",
