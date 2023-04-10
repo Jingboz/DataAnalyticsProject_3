@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Plotly library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <title>Project 3: Bush fire data analysis visualization</title>
 </head>
 
@@ -40,15 +42,17 @@
     <main class="container mt-5">
         <div class="row">
             <div class="col-md-6 content-box">
-                <h2><i class="fas fa-tree"></i> Bush Fire and Australian Tree Species</h2>
+                <h2><i class="fas fa-tree"></i> Australian Forest Area</h2>
                 <p>
-                    在这里写关于bush fire 和澳大利亚树木种类有无关系的介绍。
+                    <div id="mypie"></div>
+                    在这里写关于澳大利亚森林面积的介绍。
                 </p>
             </div>
             <div class="col-md-6 content-box">
-                <h2><i class="fas fa-sun"></i> Bush Fire and Solar Radiation</h2>
+                <h2><i class="fas fa-sun"></i> Australian Tree Species</h2>
                 <p>
-                    在这里写关于bush fire与太阳辐射之间的关系的介绍。
+                    <div id="myStack"></div>
+                    在这里写关于bush fire 和澳大利亚树木种类有无关系的介绍。
                 </p>
             </div>
         </div>
@@ -64,6 +68,16 @@
                 <div id="bushFireMap" style="height: 500px;"></div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-5">
+              <div class='bar' id="bar"></div>
+            </div>
+            <div class="col-md-5">
+              <div class='gauge' id="gauge"></div>
+            </div>
+          </div>
+          <div id="mypie"></div>
     </main>
     
     <footer class="footer">

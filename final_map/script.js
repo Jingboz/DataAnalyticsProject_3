@@ -20,8 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Define the API endpoints
 let queryURL = "http://127.0.0.1:5000/api/geo_data";
 let url_solar = "http://127.0.0.1:5000/api/solar_city";
+let url_area = "http://127.0.0.1:5000/api/forest_area";
+let url_species = "http://127.0.0.1:5000/api/tree_species";
 
-// Fetch data from the API
+// Plot introducation plots
+d3.json(url_area).then(function(response) {
+    piePlot(response);
+});
+  
+d3.json(url_species).then(function(response) {
+    stackedBar(response);
+});
+
+// Fetch initial data
+fetchData();
+  
+
 function fetchData(page = 1, features = [], maxPages = 800) {
     // If the page number exceeds maxPages, fetch solar city data and create features
     if (page > maxPages) {
@@ -43,9 +57,6 @@ function fetchData(page = 1, features = [], maxPages = 800) {
         }
     });
 }
-
-// Fetch initial data
-fetchData();
 
 // Create features for bushfire and solar city data
 function createFeatures(bushFireData, solarCityData) {
@@ -144,6 +155,58 @@ function createMap(bushFires, bushFirePolygons, solarCityData) {
     L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(myMap);
 }
 
+function stackedBar(inputArray){
+    let pureData = inputArray.filter(item => item.type != "Total forest").slice(1,9);
+    
+    var data = [];
+    
+    for (let treeType in pureData){
+        let stateList = Object.keys(pureData[treeType]).filter(item => item != "AU").slice(0,8);
+        let dataList = Object.values(pureData[treeType]).filter(item => item != "AU").slice(0,8);
+        var trace = {
+            x: stateList,
+            y: dataList,
+            name: pureData[treeType].type,
+            type: 'bar'
+          };
+          data.push(trace);
+    }
+      var layout = {title: 'Australian Tree Types 2022',barmode: 'stack'};
+      
+      Plotly.newPlot('myStack', data, layout);
+}
 
+function piePlot(inputArray){
+
+    let pureData = inputArray.filter((item => item.state != "Australia_Total"));
+    
+    var data = [{
+      values: pureData.map(item => item.area),
+      labels: pureData.map(item => item.state),
+      domain: {column: 0},
+      name: 'Forest Area',
+      hoverinfo: 'label+percent+name',
+      hole: .5,
+      type: 'pie'
+    }];
+    
+    var layout = {
+      title: 'Australian Forest Area 2022',
+      annotations: [
+        {
+          font: {
+            size: 20
+          },
+          showarrow: false,
+          text: 'Forest Area',
+        },
+      ],
+      height: 450,
+      width: 600,
+      showlegend: false,
+    };
+    
+    Plotly.newPlot('mypie', data, layout);
+}
 
 
