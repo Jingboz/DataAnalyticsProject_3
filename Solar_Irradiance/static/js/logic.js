@@ -11,12 +11,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Store the API query variables.
 let url_solar = "http://127.0.0.1:5000/api/cities";
-let url_area = "http://127.0.0.1:5000/api/forest_area";
-let url_species = "http://127.0.0.1:5000/api/tree_species";
+// let url_area = "http://127.0.0.1:5000/api/forest_area";
+// let url_species = "http://127.0.0.1:5000/api/tree_species";
 
-d3.json(url_area).then(function(response) {
-  piePlot(response);
-});
+// d3.json(url_area).then(function(response) {
+//   piePlot(response);
+// });
 
 // Get the data with d3.
 d3.json(url_solar).then(function(response) {
@@ -177,57 +177,57 @@ function gaugePlot(inputArray, isInit){
 }
 
 
-function piePlot(inputArray){
+// function piePlot(inputArray){
 
-  let pureData = inputArray.filter((item => item.state != "Australia_Total"));
+//   let pureData = inputArray.filter((item => item.state != "Australia_Total"));
   
-  var data = [{
-    values: pureData.map(item => item.area),
-    labels: pureData.map(item => item.state),
-    domain: {column: 0},
-    name: 'Forest Area',
-    hoverinfo: 'label+percent+name',
-    hole: .4,
-    type: 'pie'
-  },{
-    values: [27, 11, 25, 8, 1, 3, 25],
-    labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
-    text: 'CO2',
-    textposition: 'inside',
-    domain: {column: 1},
-    name: 'CO2 Emissions',
-    hoverinfo: 'label+percent+name',
-    hole: .4,
-    type: 'pie'
-  }];
+//   var data = [{
+//     values: pureData.map(item => item.area),
+//     labels: pureData.map(item => item.state),
+//     domain: {column: 0},
+//     name: 'Forest Area',
+//     hoverinfo: 'label+percent+name',
+//     hole: .4,
+//     type: 'pie'
+//   },{
+//     values: [27, 11, 25, 8, 1, 3, 25],
+//     labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
+//     text: 'CO2',
+//     textposition: 'inside',
+//     domain: {column: 1},
+//     name: 'CO2 Emissions',
+//     hoverinfo: 'label+percent+name',
+//     hole: .4,
+//     type: 'pie'
+//   }];
   
-  var layout = {
-    title: 'Global Emissions 1990-2011',
-    annotations: [
-      {
-        font: {
-          size: 20
-        },
-        showarrow: false,
-        text: 'Forest',
-        x: 0.17,
-        y: 0.5
-      },
-      {
-        font: {
-          size: 20
-        },
-        showarrow: false,
-        text: 'CO2',
-        x: 0.82,
-        y: 0.5
-      }
-    ],
-    height: 400,
-    width: 600,
-    showlegend: false,
-    grid: {rows: 1, columns: 2}
-  };
+//   var layout = {
+//     title: 'Global Emissions 1990-2011',
+//     annotations: [
+//       {
+//         font: {
+//           size: 20
+//         },
+//         showarrow: false,
+//         text: 'Forest',
+//         x: 0.17,
+//         y: 0.5
+//       },
+//       {
+//         font: {
+//           size: 20
+//         },
+//         showarrow: false,
+//         text: 'CO2',
+//         x: 0.82,
+//         y: 0.5
+//       }
+//     ],
+//     height: 400,
+//     width: 600,
+//     showlegend: false,
+//     grid: {rows: 1, columns: 2}
+//   };
   
-  Plotly.newPlot('mypie', data, layout);
-}
+//   Plotly.newPlot('mypie', data, layout);
+// }
