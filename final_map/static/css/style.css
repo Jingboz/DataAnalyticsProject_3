@@ -1,0 +1,25 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 85%;
+  width: 100%;
+}
+
+.col-md-5 { 
+  float: left; 
+  width:30%; 
+} 
+
+.bar { 
+  margin-left: 50%; 
+  height: 100px; 
+} 
+.gauge { 
+  margin-left: 80%; 
+  height: 100px; 
+}
