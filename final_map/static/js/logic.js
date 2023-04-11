@@ -82,7 +82,7 @@ function barPlot(inputArray, isInit){
   }];
 
   let layout = {
-    title: `Hourly Solar Irradiance - ${inputArray.city}`,
+    title: `<b>Hourly Solar Irradiance - ${inputArray.city}</b>`,
     height: 380,
     width: 600,
     yaxis: {
@@ -157,7 +157,7 @@ function gaugePlot(inputArray, isInit){
             color: '850000'
           }
         }],
-      title: '<b>Bushfile Alert</b>',
+      title: '<b>Bushfire Alert</b>',
       height: 500,
       width: 500,
       xaxis: {zeroline:false, showticklabels:false,

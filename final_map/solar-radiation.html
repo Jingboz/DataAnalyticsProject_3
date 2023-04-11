@@ -7,30 +7,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Solar Radiation Analysis</title>
+    <title>Solar Radiation Factor Analysis</title>
 </head>
 
 <body>
     <header class="header">
         <div class="text-center py-3 bg-primary">
-            <h1 class="display-4 text-white m-0">Solar Radiation Analysis</h1>
+            <h1 class="display-4 text-white m-0">Solar Radiation Factor Analysis</h1>
         </div>
     </header>
     
     
     <main class="container mt-5">
-        <p>
-            The duration of sunlight (solar radiation) in Australia is related to bushfires to a certain extent. Here are some aspects of the relationship between solar radiation and bushfires:
-        </p>
+        
+        <h5>
+            Sunlight (solar radiation) factor in bushfires:
+        </h5>
         <ol>
-            <li>Heat: Solar radiation provides heat, leading to an increase in temperature on the ground and in the atmosphere. A warmer environment is more conducive to the spread and intensification of fires.</li>
-            <li>Dryness: Solar radiation causes water to evaporate, making vegetation and the ground dry. A dry environment is more prone to igniting and spreading bushfires.</li>
-            <li><strong style="font-size: larger;">Vegetation growth:</strong> Sunlight and temperature affect plant growth. In areas with high radiation, vegetation grows rapidly and may accumulate a large amount of combustible material. This combustible material, under dry conditions, increases the risk of fires.</li>
+            <li>Temperature: Solar radiation provides heat, leading to an increase in temperature on the vegetation and other combustible elements, which will make them more easily to be ignited and burned.</li>
+            <li>Humidity: Heat will cause low humidity which evaporates moisture from vegetation and makes them more flammable. When humidity decreases to less than 30 per cent the fire danger increases.</li>
             <li>Precipitation: Solar radiation is related to precipitation patterns. Stronger solar radiation may lead to reduced precipitation, increased drought, and consequently higher fire risks.</li>
         </ol>
-        <p>
-            However, the duration of sunlight is just one of many factors influencing bushfires. Other factors, such as Tree Species in Australia, also have a significant impact on bushfires.
-        </p>
+
+        <img src="eucalyptus_tree.webp" alt="eucalyptus tree" width="800" height="500" class="center">
+        <footer class="footer">
+            <div class="container">
+                <p> Image credit: Phillip Wittke</p>
+            </div>
+        </footer>
+        
+        <h5>Assumptions made for the prediction model: </h5>
+        <ol>
+            <li>Considering sunlight is the major natural cause of unplanned bushfires</li>
+            <li>There is a proportional relationship between the indensity of sunlight and probabilies of bushfires outbreak</li>
+            <li>Direct Normal Irradiance (DNI) in clear sky is adopted in this model, which means the quantity of radiation received per unit area on a surface perpendicular to the sun.</li>
+        </ol>
     </main>
     <footer class="footer">
         <div class="container">
